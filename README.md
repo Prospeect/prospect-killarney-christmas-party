@@ -42,3 +42,22 @@ Recommended flow: Safari → Share → Add to Home Screen → turn on **Open as 
 ## Android
 
 Recommended flow: Chrome → three-dot menu → Install app / Add to Home screen → open the Prospect icon → Install App tab → Enable notifications → Allow → Enable location / Share my GPS.
+
+
+## v7 optimized GitHub version
+
+The large inline images have been moved from `index.html` into the `assets/` folder, so `index.html` is now small enough to edit directly in GitHub.
+
+### CARTO map API key
+
+Open `index.html` and search for exactly:
+
+`INSERT API KEY HERE, JOHN`
+
+Replace only that quoted text with your full CARTO API key. Keep the quote marks and do not add spaces. Example:
+
+```js
+const CARTO_API_KEY = "your-full-key-goes-here";
+```
+
+Do not delete the rest of the line.
