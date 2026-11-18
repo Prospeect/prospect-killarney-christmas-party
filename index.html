@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-<title>Prospect Killarney Christmas Party 2026 · Rev 8</title>
+<title>Prospect Killarney Christmas Party 2026 · Rev 9</title>
 <meta name="theme-color" content="#071522" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -67,7 +67,7 @@ button,input,select{font:inherit} button{cursor:pointer}.app{max-width:1180px;ma
   <header class="topbar">
     <div class="brandrow">
       <div class="brand"><div class="crest"><i class="fa-solid fa-sailboat"></i></div><div><h1>Prospect Killarney</h1><small>Christmas Party · 20–22 Nov 2026</small></div></div>
-      <div class="livebadge"><i class="fa-solid fa-circle"></i>&nbsp; Prototype live</div>
+      <div class="livebadge"><i class="fa-solid fa-circle"></i>&nbsp; Live crew</div>
     </div>
     <nav class="tabs" aria-label="Main navigation">
       <button class="tab active" data-view="home"><i class="fa-solid fa-house"></i> Home</button>
@@ -85,7 +85,7 @@ button,input,select{font:inherit} button{cursor:pointer}.app{max-width:1180px;ma
       <div class="card hero">
         <img id="heroSlide" src="assets/party-01.webp" alt="Christmas crew" />
         <div id="heroCaption" class="heroCaption">Christmas crew</div>
-        <div class="revStamp">REV 8</div>
+        <div class="revStamp">REV 9 · LIVE</div>
         <button id="heroMax" class="heroMax" aria-label="Maximise current picture" title="Maximise picture"><i class="fa-solid fa-expand"></i></button>
         <div class="heroReel" aria-label="Crew image slideshow"><button id="heroPrev" class="heroArrow" aria-label="Previous image"><i class="fa-solid fa-chevron-left"></i></button><div id="heroDots" class="heroDots"></div><button id="heroNext" class="heroArrow" aria-label="Next image"><i class="fa-solid fa-chevron-right"></i></button></div>
         <div class="heroContent">
@@ -158,10 +158,10 @@ button,input,select{font:inherit} button{cursor:pointer}.app{max-width:1180px;ma
         <div class="card pad">
           <div class="profilePanel">
             <div><b id="profileTitle">Join the Prospect crew</b><small id="profileSub">Create a simple profile. The roster is whoever has joined — not just the six on the train.</small></div>
-            <div class="profileActions" id="loggedOutProfile"><input id="profileName" maxlength="28" placeholder="Your name / crew name"><button class="btn primary" id="joinCrew"><i class="fa-solid fa-right-to-bracket"></i> Create login</button></div>
+            <div class="profileActions" id="loggedOutProfile"><input id="profileName" maxlength="28" placeholder="Your name / crew name"><button class="btn primary" id="joinCrew"><i class="fa-solid fa-right-to-bracket"></i> Join crew</button></div>
             <div class="profileActions hidden" id="loggedInProfile"><button class="btn primary" id="toggleMyCheck"><i class="fa-solid fa-circle-check"></i> Check me out</button><button class="btn ghost" id="logoutCrew"><i class="fa-solid fa-arrow-right-from-bracket"></i> Log out</button></div>
           </div>
-          <div class="demoNote"><b>Local profile mode:</b> until the realtime backend is connected, this browser stores its own crew state. Use your own Check in / Check out control above. Demo tools are hidden at the very bottom of the page.</div>
+          <div class="demoNote" id="liveCrewNote"><b>Live crew mode:</b> crew check-ins, GPS positions, rounds and venue votes sync through Supabase between phones. Tap a crew member or map marker to navigate to them. Demo tools remain hidden at the bottom.</div>
           <div class="actions"><button class="btn primary" id="gpsBtn"><i class="fa-solid fa-location-crosshairs"></i> Share my GPS</button><button class="btn ghost" id="pingBtn"><i class="fa-solid fa-satellite-dish"></i> Check-in / ping crew</button></div>
           <div class="crewCount" id="crewCount"></div>
           <div class="crewList" id="crewList" style="margin-top:12px"></div>
@@ -177,11 +177,12 @@ button,input,select{font:inherit} button{cursor:pointer}.app{max-width:1180px;ma
             <div class="inst"><small>VMG</small><b id="vmg">0.0</b><em>toward target</em></div>
             <div class="inst"><small>XTE</small><b id="xte">PUB</b><em>cross-track excuse</em></div>
           </div>
+          <div class="actions"><button class="btn primary" id="walkToCrew"><i class="fa-solid fa-person-walking-arrow-right"></i> Open walking route</button></div>
         </div>
       </div>
       <div class="grid" style="margin-top:14px">
         <div class="card pad span8">
-          <div class="sectionTitle"><div><div class="kicker">Crew check-in</div><h3>Sound off</h3></div><p>Prototype ping + local notification.</p></div>
+          <div class="sectionTitle"><div><div class="kicker">Crew check-in</div><h3>Sound off</h3></div><p>Live check-in status across the crew.</p></div>
           <div class="checkGrid" id="checkGrid"></div>
           <div class="actions"><button class="btn primary" id="pingAll"><i class="fa-solid fa-bell"></i> Ping everyone</button></div>
         </div>
@@ -209,7 +210,7 @@ button,input,select{font:inherit} button{cursor:pointer}.app{max-width:1180px;ma
         <div class="card pad span4">
           <div class="sectionTitle"><div><div class="kicker">Order board</div><h3>Aggregate</h3></div></div>
           <div class="tally" id="tally"></div>
-          <div class="demoNote" style="margin-top:14px">In a published version, the initiator would see this update live as each phone replies. This prototype keeps the state in this browser.</div>
+          <div class="demoNote" style="margin-top:14px"><b>Live round:</b> replies aggregate here as each crew phone answers.</div>
         </div>
       </div>
     </section>
@@ -218,10 +219,10 @@ button,input,select{font:inherit} button{cursor:pointer}.app{max-width:1180px;ma
       <div class="sectionTitle"><div><div class="kicker">Killarney tactical planning</div><h3>Where Next?</h3></div><p>Vote, regroup, proceed.</p></div>
       <div class="grid">
         <div class="card pad span8"><div id="pubMap"></div></div>
-        <div class="card pad span4"><div class="whereTop"><div><div class="kicker">Crew vote</div><h3 style="margin:3px 0 0;font-family:Georgia,serif">Next stop</h3></div><div class="winner" id="winner">No votes yet</div></div><div class="actions"><button class="btn ghost" id="clearVotes"><i class="fa-solid fa-rotate-left"></i> Reset votes</button></div></div>
+        <div class="card pad span4"><div class="whereTop"><div><div class="kicker">Crew vote</div><h3 style="margin:3px 0 0;font-family:Georgia,serif">Next stop</h3></div><div class="winner" id="winner">No votes yet</div></div><div class="actions"><button class="btn ghost" id="clearVotes"><i class="fa-solid fa-rotate-left"></i> Clear my vote</button></div></div>
       </div>
       <div class="pubList" id="pubList"></div>
-      <div class="demoNote" style="margin-top:12px">Venue pins are a prototype town-centre layout. The in-app basemap uses a hosted map service with an automatic fallback; “Map” hands off to Google Maps on the phone.</div>
+      <div class="demoNote" style="margin-top:12px">Venue pins use the Killarney town-centre layout. Votes sync live across the crew; “Map” hands off to Google Maps on the phone.</div>
     </section>
 
     <section class="view" id="install">
@@ -295,7 +296,7 @@ button,input,select{font:inherit} button{cursor:pointer}.app{max-width:1180px;ma
   <details class="testTools" id="testTools">
     <summary><span><i class="fa-solid fa-flask"></i> Demo / Test Mode</span><small>Hidden tools</small></summary>
     <div class="testToolsBody">
-      <p>These controls are only for testing the prototype on one browser. They do not represent real logged-in crew on other phones.</p>
+      <p>Fallback tools only. Real crew now sync through Supabase; these controls create local demo people for testing navigation without another phone.</p>
       <div class="actions">
         <button class="btn ghost" id="demoCrewBtn"><i class="fa-solid fa-user-group"></i> Add demo crew</button>
         <button class="btn ghost" id="checkAll"><i class="fa-solid fa-check-double"></i> Demo: check everyone in</button>
@@ -305,7 +306,7 @@ button,input,select{font:inherit} button{cursor:pointer}.app{max-width:1180px;ma
       </div>
     </div>
   </details>
-  <div class="footerNote">Prospect Killarney Christmas Party · <b>Rev 8</b> · GitHub Pages / PWA-ready prototype. Installation, local notifications and phone GPS are enabled; live multi-phone crew sharing and remote screen-off push alerts still require the realtime/push backend.</div>
+  <div class="footerNote">Prospect Killarney Christmas Party · <b>Rev 9 · Live Crew</b> · GitHub Pages + Supabase Realtime. Multi-phone crew, check-ins, GPS, rounds, venue votes and foreground Red Alerts are live. Screen-off remote push alerts remain a later upgrade.</div>
 </div>
 
 <div class="photoLightbox" id="photoLightbox" role="dialog" aria-modal="true" aria-label="Maximised crew picture">
@@ -324,8 +325,18 @@ button,input,select{font:inherit} button{cursor:pointer}.app{max-width:1180px;ma
 </div>
 <div class="toast" id="toast">Done</div>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
 <script>
+// ================================================================
+// PROSPECT REV 9 PUBLIC BROWSER CONFIG
+// These are browser-safe/public keys. Do not put service-role keys here.
+const PROSPECT_CONFIG = {
+  CARTO_API_KEY: "cb1_5ayt_1_5ec3a8cd97bd4b55dc50f636",
+  SUPABASE_URL: "https://ixtipafyxtbfczqezsce.supabase.co",
+  SUPABASE_PUBLISHABLE_KEY: "sb_publishable_eSqoV6o6z-iOkqrhCL_paw_ugoapAzx"
+};
+// ================================================================
 const pubs = [
  {name:"J.M. Reidy's",area:'Main Street',lat:52.05935,lng:-9.50805,v:0},
  {name:"Murphy's of Killarney",area:'College Street',lat:52.05825,lng:-9.50615,v:0},
@@ -338,7 +349,7 @@ const pubs = [
  {name:"Courtney's Bar",area:'Plunkett Street',lat:52.05895,lng:-9.50685,v:0},
  {name:"Pig's Lane",area:'College Street',lat:52.05835,lng:-9.50520,v:0}
 ];
-const APP_REV='Rev 8';
+const APP_REV='Rev 9';
 const CREW_KEY='prospectPartyCrewV2', ACTIVE_KEY='prospectPartyActiveV2', MIGRATION_KEY='prospectPartyRev8Migration';
 const drinkOptions=['Guinness','Heineken','Cocktail','Other','Coke'];
 let crew=[], activeId=localStorage.getItem(ACTIVE_KEY)||'', selectedCrew=0, selectedDrink='Guinness';
@@ -409,12 +420,7 @@ function hav(a,b){const R=6371,dLat=deg2rad(b.lat-a.lat),dLon=deg2rad(b.lng-a.ln
 function bearing(a,b){const y=Math.sin(deg2rad(b.lng-a.lng))*Math.cos(deg2rad(b.lat));const x=Math.cos(deg2rad(a.lat))*Math.sin(deg2rad(b.lat))-Math.sin(deg2rad(a.lat))*Math.cos(deg2rad(b.lat))*Math.cos(deg2rad(b.lng-a.lng));return (rad2deg(Math.atan2(y,x))+360)%360}
 function angleDiff(a,b){return ((a-b+540)%360)-180}
 function updateTarget(){if(!crew.length){$('#targetName').textContent='No crew logged in';['dtw','btw','cog','sog','vmg'].forEach(id=>$('#'+id).textContent=id==='cog'?'---':'—');return}const t=crew[selectedCrew]||crew[0],d=hav(userPos,t),br=bearing(userPos,t);$('#targetName').textContent=t.name;$('#dtw').textContent=d<1?Math.round(d*1000)+'m':d.toFixed(2);$('#btw').textContent=String(Math.round(br)).padStart(3,'0')+'°';$('#cog').textContent=currentHeading==null?'---':String(Math.round(currentHeading)).padStart(3,'0')+'°';$('#sog').textContent=currentSpeed.toFixed(1);const v=currentHeading==null?0:Math.max(-currentSpeed,currentSpeed*Math.cos(deg2rad(angleDiff(br,currentHeading))));$('#vmg').textContent=v.toFixed(1);if(crewMap){crewMarkers.forEach((m,i)=>m.setOpacity(i===selectedCrew?1:.55));crewMap.panTo([t.lat,t.lng],{animate:true})}}
-// ================================================================
-// JOHN: PASTE YOUR FULL CARTO API KEY BETWEEN THE QUOTES BELOW.
-// JOHN: edit the next line only. Keep the quotation marks.
-// Do not add spaces before or after the key.
-const CARTO_API_KEY = "cb1_5ayt_1_5ec3a8cd97bd4b55dc50f636";
-// ================================================================
+const CARTO_API_KEY = PROSPECT_CONFIG.CARTO_API_KEY;
 function addBaseMap(map){
   const hasKey = CARTO_API_KEY && !CARTO_API_KEY.includes('INSERT API KEY HERE');
   const cartoUrl = 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png' + (hasKey ? '?key=' + encodeURIComponent(CARTO_API_KEY.trim()) : '');
@@ -481,6 +487,163 @@ if(isAndroid()){document.querySelector('[data-device="android"]')?.click()}
 if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').then(()=>refreshSetupStatus()).catch(()=>{setSetupState('workerState','Failed','bad')}))}
 refreshSetupStatus();
 
-loadCrew();renderAll();renderPubs();initCrewMap();initPubMap();
+crew=[];activeId='';renderAll();renderPubs();initCrewMap();initPubMap();
 </script>
+
+<script>
+// ====================== REV 9 LIVE CREW LAYER ======================
+let sbClient=null, sbUser=null, liveSubscription=null, liveTargetLine=null;
+let myPubVote='', lastGpsPush=0, liveBooted=false;
+const LIVE_FALLBACK={lat:52.0588,lng:-9.5092};
+
+function setLiveBadge(text,ok=true){
+  const el=document.querySelector('.livebadge'); if(!el)return;
+  el.innerHTML=`<i class="fa-solid fa-circle"></i>&nbsp; ${text}`;
+  el.style.color=ok?'#8ae2aa':'#ffb2a8';
+  el.style.borderColor=ok?'rgba(84,183,123,.35)':'rgba(231,49,49,.4)';
+  el.style.background=ok?'rgba(84,183,123,.12)':'rgba(231,49,49,.12)';
+}
+function liveAgo(iso){
+  if(!iso)return 'never'; const ms=Date.now()-new Date(iso).getTime();
+  if(ms<60000)return 'just now'; if(ms<3600000)return Math.floor(ms/60000)+'m ago';
+  if(ms<86400000)return Math.floor(ms/3600000)+'h ago'; return Math.floor(ms/86400000)+'d ago';
+}
+function localDemoCrew(){
+  try{return JSON.parse(localStorage.getItem(CREW_KEY)||'[]').filter(c=>c&&c.demo)}catch(e){return []}
+}
+function saveCrew(){ localStorage.setItem(CREW_KEY,JSON.stringify(crew.filter(c=>c.demo))) }
+function mapDbCrew(r){
+  return {id:r.user_id,name:r.name,lat:r.latitude==null?null:Number(r.latitude),lng:r.longitude==null?null:Number(r.longitude),
+    status:r.checked_in?'online':'away',check:!!r.checked_in,drink:r.drink||'',joined:r.created_at?Date.parse(r.created_at):Date.now(),
+    demo:false,sharing:!!r.sharing_gps,lastSeen:r.last_seen||r.updated_at};
+}
+async function ensureLiveUser(){
+  if(sbUser)return sbUser;
+  const {data:{session}}=await sbClient.auth.getSession();
+  if(session?.user){sbUser=session.user;return sbUser}
+  const {data,error}=await sbClient.auth.signInAnonymously();
+  if(error)throw error; sbUser=data.user; return sbUser;
+}
+async function loadLiveCrew(){
+  if(!sbClient)return;
+  const prevId=crew[selectedCrew]?.id;
+  const {data,error}=await sbClient.from('crew_presence').select('*').order('updated_at',{ascending:false});
+  if(error){setLiveBadge('SETUP NEEDED',false);return}
+  const demos=localDemoCrew(); crew=[...(data||[]).map(mapDbCrew),...demos];
+  const mine=sbUser&&crew.find(c=>c.id===sbUser.id&&!c.demo); activeId=mine?sbUser.id:'';
+  let idx=prevId?crew.findIndex(c=>c.id===prevId):-1;
+  if(idx<0){idx=crew.findIndex(c=>!c.demo&&c.id!==activeId&&c.lat!=null&&c.lng!=null);if(idx<0)idx=Math.max(0,crew.findIndex(c=>!c.demo))}
+  selectedCrew=Math.max(0,idx); renderAll(); setLiveBadge('LIVE CREW',true);
+}
+async function loadLiveVotes(){
+  const {data,error}=await sbClient.from('pub_votes').select('user_id,pub_name'); if(error)return;
+  pubs.forEach(p=>p.v=0); myPubVote='';
+  (data||[]).forEach(v=>{const p=pubs.find(x=>x.name===v.pub_name);if(p)p.v++;if(sbUser&&v.user_id===sbUser.id)myPubVote=v.pub_name});
+  renderPubs();
+}
+async function liveNotify(title,body,tag){
+  if(document.visibilityState==='visible'){toast(body);return}
+  try{if('Notification' in window&&Notification.permission==='granted'){const reg=await navigator.serviceWorker.ready;await reg.showNotification(title,{body,icon:'./icons/icon-192.png',badge:'./icons/icon-192.png',tag})}}catch(e){}
+}
+async function postLiveEvent(type,payload={}){
+  if(!sbUser)return; await sbClient.from('party_events').insert({type,created_by:sbUser.id,payload});
+}
+function handleLiveEvent(rec){
+  if(!rec||rec.created_by===sbUser?.id)return;
+  const by=rec.payload?.by_name||'Crew';
+  if(rec.type==='red_alert'){openAlert(false);liveNotify('PROSPECT RED ALERT','ADIDAS GIRL ALERT — triggered by '+by,'prospect-red-alert')}
+  if(rec.type==='round_call'){roundOpen=true;updateHomeStats();liveNotify('ROUND CALL',by+' has called a round. Declare your drink.','prospect-round')}
+  if(rec.type==='crew_ping'){liveNotify('Prospect check-in',by+' is asking the crew to check in / share position.','prospect-ping')}
+}
+function subscribeLive(){
+  if(liveSubscription)sbClient.removeChannel(liveSubscription);
+  liveSubscription=sbClient.channel('prospect-live-v9')
+    .on('postgres_changes',{event:'*',schema:'public',table:'crew_presence'},()=>loadLiveCrew())
+    .on('postgres_changes',{event:'*',schema:'public',table:'pub_votes'},()=>loadLiveVotes())
+    .on('postgres_changes',{event:'INSERT',schema:'public',table:'party_events'},p=>handleLiveEvent(p.new))
+    .subscribe(status=>{if(status==='SUBSCRIBED')setLiveBadge('LIVE CREW',true)});
+}
+
+refreshProfile=function(){
+  const a=activeUser(),out=$('#loggedOutProfile'),inn=$('#loggedInProfile');out.classList.toggle('hidden',!!a);inn.classList.toggle('hidden',!a);
+  $('#profileTitle').innerHTML=a?`${a.name} <span class="youTag">You</span>`:'Join the Prospect crew';
+  $('#profileSub').textContent=a?(a.check?(a.sharing?'Checked in · live GPS sharing':'Checked in · GPS not shared'):'Checked out · stay logged in and check back in when ready.'):'Enter your name once on this phone. No email or password needed.';
+  const b=$('#toggleMyCheck');if(b&&a)b.innerHTML=a.check?'<i class="fa-solid fa-circle-xmark"></i> Check me out':'<i class="fa-solid fa-circle-check"></i> Check me in';
+};
+joinCrew=async function(){
+  const name=$('#profileName').value.trim(); if(!name){toast('Enter your name first');return}
+  try{await ensureLiveUser();const now=new Date().toISOString();
+    const {error}=await sbClient.from('crew_presence').upsert({user_id:sbUser.id,name,checked_in:true,sharing_gps:false,last_seen:now,updated_at:now},{onConflict:'user_id'});
+    if(error)throw error; $('#profileName').value=''; await loadLiveCrew(); toast('Joined live crew as '+name);
+  }catch(e){console.error(e);toast('Could not join live crew — run supabase_setup.sql first')}
+};
+logoutCrew=async function(){
+  if(!sbUser)return; try{if(gpsWatch!=null){navigator.geolocation.clearWatch(gpsWatch);gpsWatch=null}
+    await sbClient.from('crew_presence').delete().eq('user_id',sbUser.id);activeId='';await loadLiveCrew();toast('Removed this phone from the crew')
+  }catch(e){toast('Could not leave crew')}
+};
+$('#joinCrew').onclick=joinCrew;$('#logoutCrew').onclick=logoutCrew;
+$('#toggleMyCheck').onclick=async()=>{const me=activeUser();if(!me){toast('Join the crew first');return}const next=!me.check;const now=new Date().toISOString();
+  const {error}=await sbClient.from('crew_presence').update({checked_in:next,last_seen:now,updated_at:now}).eq('user_id',sbUser.id);if(error){toast('Check-in update failed');return}toast(next?'Checked in':'Checked out')};
+window.toggleCheck=async i=>{if(!crew[i]||crew[i].id!==activeId)return;$('#toggleMyCheck').click()};
+
+renderCrew=function(){
+  const list=$('#crewList'),real=crew.filter(c=>!c.demo);$('#crewCount').textContent=`${real.length} live crew${real.length===1?' member':''}${crew.some(c=>c.demo)?' + demo crew':''}`;
+  if(!crew.length){list.innerHTML='<div class="crewEmpty">No crew has joined yet. Enter your name above to become the first.</div>';renderChecks();renderRoundRows();updateHomeStats();updateTarget();syncCrewMarkers();return}
+  if(selectedCrew>=crew.length)selectedCrew=0;
+  list.innerHTML=crew.map((c,i)=>{let meta;if(c.demo)meta='Demo position';else if(c.id===activeId)meta=c.sharing?'You · sharing live GPS':'You · GPS off';else if(c.check)meta=(c.sharing?'Sharing GPS':'Checked in · GPS off')+' · '+liveAgo(c.lastSeen);else meta='Checked out · '+liveAgo(c.lastSeen);
+    return `<div class="crew ${i===selectedCrew?'selected':''}" data-i="${i}"><div class="avatar">${(c.name[0]||'?').toUpperCase()}</div><div class="crewMeta"><b>${c.name}${c.id===activeId?'<span class="youTag">You</span>':''}</b><span>${meta}</span></div><div class="dot ${c.check?'':'away'}"></div></div>`}).join('');
+  list.querySelectorAll('.crew').forEach(el=>el.onclick=()=>{selectedCrew=+el.dataset.i;renderCrew();updateTarget()});renderChecks();renderRoundRows();updateHomeStats();syncCrewMarkers();
+};
+renderChecks=function(){const g=$('#checkGrid');if(!crew.length){g.innerHTML='<div class="crewEmpty">Check-ins appear as people join.</div>';return}g.innerHTML=crew.map((c,i)=>`<div class="checkItem"><div><b>${c.name}${c.id===activeId?'<span class="youTag">You</span>':''}</b><div class="status ${c.check?'ok':''}">${c.check?'CHECKED IN':'WAITING'}</div></div>${c.id===activeId?`<button class="voteBtn" onclick="toggleCheck(${i})">${c.check?'Check out':'Check in'}</button>`:`<span class="status">${c.demo?'demo':'live'}</span>`}</div>`).join('')};
+
+syncCrewMarkers=function(){
+  if(!crewMap)return;crewMarkers.forEach(m=>{if(m)crewMap.removeLayer(m)});crewMarkers=crew.map((c,i)=>{
+    if(c.id===activeId||c.lat==null||c.lng==null||!Number.isFinite(c.lat)||!Number.isFinite(c.lng))return null;
+    const marker=L.marker([c.lat,c.lng]).addTo(crewMap).bindPopup(`<b>${c.name}</b><br>${c.check?'Checked in':'Checked out'}${c.sharing?' · live GPS':''}<br><b>Tap marker to navigate</b>`);
+    marker.on('click',()=>{selectedCrew=i;renderCrew();updateTarget()});return marker});updateTarget();
+};
+updateTarget=function(){
+  if(liveTargetLine&&crewMap){try{crewMap.removeLayer(liveTargetLine)}catch(e){}liveTargetLine=null}
+  if(!crew.length){$('#targetName').textContent='No crew logged in';['dtw','btw','sog','vmg'].forEach(id=>$('#'+id).textContent='—');$('#cog').textContent='---';return}
+  let t=crew[selectedCrew];if(!t||t.id===activeId){const alt=crew.findIndex(c=>c.id!==activeId&&c.lat!=null&&c.lng!=null);if(alt>=0){selectedCrew=alt;t=crew[alt]}}
+  if(!t||t.id===activeId){$('#targetName').textContent='Select another crew member';$('#dtw').textContent='—';$('#btw').textContent='---';$('#cog').textContent=currentHeading==null?'---':String(Math.round(currentHeading)).padStart(3,'0')+'°';$('#sog').textContent=currentSpeed.toFixed(1);$('#vmg').textContent='—';return}
+  $('#targetName').textContent=t.name;
+  if(!lastPos){$('#dtw').textContent='START GPS';$('#btw').textContent='---';$('#cog').textContent='---';$('#sog').textContent='—';$('#vmg').textContent='—';return}
+  if(t.lat==null||t.lng==null){$('#dtw').textContent='NO GPS';$('#btw').textContent='---';$('#vmg').textContent='—';return}
+  const d=hav(userPos,t),br=bearing(userPos,t);$('#dtw').textContent=d<1?Math.round(d*1000)+'m':d.toFixed(2)+'km';$('#btw').textContent=String(Math.round(br)).padStart(3,'0')+'°';$('#cog').textContent=currentHeading==null?'---':String(Math.round(currentHeading)).padStart(3,'0')+'°';$('#sog').textContent=currentSpeed.toFixed(1);const v=currentHeading==null?0:Math.max(-currentSpeed,currentSpeed*Math.cos(deg2rad(angleDiff(br,currentHeading))));$('#vmg').textContent=v.toFixed(1);
+  if(crewMap){crewMarkers.forEach((m,i)=>{if(m)m.setOpacity(i===selectedCrew?1:.55)});liveTargetLine=L.polyline([[userPos.lat,userPos.lng],[t.lat,t.lng]],{color:'#e0b35c',weight:4,opacity:.85,dashArray:'9,7'}).addTo(crewMap);crewMap.fitBounds(liveTargetLine.getBounds().pad(.22),{animate:true,maxZoom:17})}
+};
+$('#walkToCrew').onclick=()=>{const t=crew[selectedCrew];if(!lastPos){toast('Start Share my GPS first');return}if(!t||t.id===activeId||t.lat==null||t.lng==null){toast('Select a crew member with a GPS position first');return}window.open(`https://www.google.com/maps/dir/?api=1&origin=${userPos.lat},${userPos.lng}&destination=${t.lat},${t.lng}&travelmode=walking`,'_blank')};
+
+async function pushGps(n){if(!sbUser)return;const now=new Date().toISOString();await sbClient.from('crew_presence').update({latitude:n.lat,longitude:n.lng,heading:currentHeading,speed:currentSpeed,sharing_gps:true,checked_in:true,last_seen:now,updated_at:now}).eq('user_id',sbUser.id)}
+async function stopLiveGps(){if(gpsWatch!=null){try{navigator.geolocation.clearWatch(gpsWatch)}catch(e){}gpsWatch=null}if(sbUser)await sbClient.from('crew_presence').update({sharing_gps:false,last_seen:new Date().toISOString(),updated_at:new Date().toISOString()}).eq('user_id',sbUser.id);$('#gpsBtn').innerHTML='<i class="fa-solid fa-location-crosshairs"></i> Share my GPS';toast('GPS sharing stopped')}
+shareGPS=async function(){const a=activeUser();if(!a){toast('Join the crew first');return}if(gpsWatch!=null){await stopLiveGps();return}if(!navigator.geolocation){toast('Geolocation not supported');return}
+  $('#gpsBtn').innerHTML='<i class="fa-solid fa-spinner fa-spin"></i> Acquiring GPS';gpsWatch=navigator.geolocation.watchPosition(async pos=>{const n={lat:pos.coords.latitude,lng:pos.coords.longitude};currentSpeed=pos.coords.speed!=null?Math.max(0,pos.coords.speed*3.6):currentSpeed;currentHeading=pos.coords.heading!=null?pos.coords.heading:currentHeading;userPos=n;lastPos=n;if(userMarker){userMarker.setLatLng([n.lat,n.lng]);userMarker.setStyle({opacity:1,fillOpacity:1});userMarker.bindPopup('You · live GPS')}updateTarget();$('#gpsBtn').innerHTML='<i class="fa-solid fa-location-dot"></i> Stop live GPS';const now=Date.now();if(now-lastGpsPush>3000){lastGpsPush=now;await pushGps(n)}},err=>{toast(err.code===1?'Location permission blocked. Allow Location for this site/app.':'GPS unavailable: '+err.message);$('#gpsBtn').innerHTML='<i class="fa-solid fa-location-crosshairs"></i> Share my GPS';gpsWatch=null},{enableHighAccuracy:true,maximumAge:1500,timeout:12000})
+};
+$('#gpsBtn').onclick=shareGPS;
+
+pingCrew=async function(){const me=activeUser();if(!me){toast('Join the crew first');return}await postLiveEvent('crew_ping',{by_name:me.name});toast('Crew ping sent live')};$('#pingBtn').onclick=pingCrew;$('#pingAll').onclick=pingCrew;
+chooseDrink=async function(choice){const me=activeUser();if(!me){toast('Join the crew first');return}$$('.drink').forEach(x=>x.classList.toggle('active',x.dataset.drink===choice));selectedDrink=choice;const other=$('#otherDrinkBox'),feedback=$('#roundFeedback');other.classList.toggle('show',choice==='Other');if(choice==='Other'){feedback.textContent='Type exactly what you want and tap Add.';$('#otherDrinkInput').focus();return}const {error}=await sbClient.from('crew_presence').update({drink:choice,updated_at:new Date().toISOString()}).eq('user_id',sbUser.id);if(error){toast('Could not save drink');return}feedback.textContent=choice==='Coke'?'Not a chance.':choice==='Heineken'?'Only in the water.':'Locked in: '+choice;toast(choice==='Coke'?'Not a chance.':'Your selection: '+choice)};
+saveOther=async function(){const me=activeUser();if(!me){toast('Join the crew first');return}const val=$('#otherDrinkInput').value.trim();if(!val){toast('Tell us what you actually want');return}await sbClient.from('crew_presence').update({drink:'Other: '+val,updated_at:new Date().toISOString()}).eq('user_id',sbUser.id);$('#roundFeedback').textContent='Locked in: '+val;toast('Added: '+val)};$('#saveOtherDrink').onclick=saveOther;
+$('#launchRound').onclick=async()=>{const me=activeUser();if(!me){toast('Join the crew first');return}roundOpen=true;updateHomeStats();await postLiveEvent('round_call',{by_name:me.name});toast('ROUND CALL sent to live crew')};
+
+renderPubs=function(){const el=$('#pubList');el.innerHTML=pubs.map((p,i)=>`<div class="pub ${myPubVote===p.name?'selected':''}"><div class="info"><b>${p.name}</b><small>${p.area} · ${p.v} vote${p.v===1?'':'s'}</small></div><button class="voteBtn ${myPubVote===p.name?'voted':''}" onclick="votePub(${i})">${myPubVote===p.name?'Your vote':'Vote'}</button><button class="voteBtn" onclick="openVenue(${i})">Map</button></div>`).join('');const total=pubs.reduce((a,p)=>a+p.v,0);$('#homeVotes').textContent=total;const w=[...pubs].sort((a,b)=>b.v-a.v)[0];$('#winner').textContent=total?w.name:'No votes yet';if(pubMarkers.length)pubMarkers.forEach((m,i)=>m.setOpacity(pubs[i].v?1:.55))};
+window.votePub=async i=>{if(!sbUser){toast('Join the crew first');return}const p=pubs[i];const {error}=await sbClient.from('pub_votes').upsert({user_id:sbUser.id,pub_name:p.name,updated_at:new Date().toISOString()},{onConflict:'user_id'});if(error){toast('Vote failed');return}toast('Your vote: '+p.name)};
+$('#clearVotes').onclick=async()=>{if(!sbUser)return;await sbClient.from('pub_votes').delete().eq('user_id',sbUser.id);toast('Your venue vote cleared')};
+
+triggerAlert=async function(){openAlert(false);const me=activeUser();if(me)await postLiveEvent('red_alert',{by_name:me.name})};$('#alertTab').onclick=triggerAlert;$('#homeAlert').onclick=triggerAlert;
+
+async function bootLiveCrew(){
+  try{
+    if(!window.supabase?.createClient)throw new Error('Supabase library did not load');
+    sbClient=window.supabase.createClient(PROSPECT_CONFIG.SUPABASE_URL,PROSPECT_CONFIG.SUPABASE_PUBLISHABLE_KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});
+    await ensureLiveUser();if(userMarker){userMarker.setStyle({opacity:.25,fillOpacity:.25});userMarker.bindPopup('You · GPS not shared yet')}await Promise.all([loadLiveCrew(),loadLiveVotes()]);subscribeLive();liveBooted=true;
+    setInterval(async()=>{if(!sbUser||!activeUser())return;const now=new Date().toISOString();await sbClient.from('crew_presence').update({last_seen:now,updated_at:now}).eq('user_id',sbUser.id)},60000);
+  }catch(e){console.error('Live crew boot failed',e);setLiveBadge('SETUP NEEDED',false);const n=$('#liveCrewNote');if(n)n.innerHTML='<b>Supabase setup needed:</b> run the supplied <code>supabase_setup.sql</code> once, then reload this page.';toast('Live crew setup needed — run supabase_setup.sql')}
+}
+bootLiveCrew();
+// ==================== END REV 9 LIVE CREW LAYER ====================
+</script>
+
 </body></html>
