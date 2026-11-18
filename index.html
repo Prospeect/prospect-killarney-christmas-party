@@ -45,7 +45,33 @@ button,input,select{font:inherit} button{cursor:pointer}.app{max-width:1180px;ma
 .dayhead{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}.dayhead h4{font-family:Georgia,serif;font-size:22px;margin:0}.dayhead span{color:var(--gold);font-size:12px;font-weight:800}
 .photoCard{min-height:260px;background-position:center;background-size:cover;position:relative}.photoCard:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(4,13,20,.84))}.photoCard .photoText{position:absolute;z-index:2;bottom:16px;left:16px;right:16px}.photoText b{font-family:Georgia,serif;font-size:24px}.photoText p{margin:4px 0 0;color:#d4dee2;font-size:12px}
 .crewLayout{display:grid;grid-template-columns:1fr 1.1fr;gap:14px}.crewList{display:grid;gap:8px}.crew{display:flex;align-items:center;gap:11px;padding:12px;border-radius:15px;background:rgba(255,255,255,.045);border:1px solid var(--line);cursor:pointer}.crew.selected{border-color:rgba(77,167,216,.7);background:rgba(77,167,216,.1)}.avatar{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font-weight:900;background:#193f54;color:#d8effb}.crewMeta{flex:1}.crewMeta b{display:block}.crewMeta span{font-size:11px;color:var(--muted)}.dot{width:9px;height:9px;border-radius:50%;background:var(--green);box-shadow:0 0 0 5px rgba(84,183,123,.09)}.dot.away{background:#748592;box-shadow:none}
-#crewMap,#pubMap{height:360px;border-radius:17px;overflow:hidden;background:#d9e0e4}.navInstruments{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}.inst{padding:12px;border-radius:14px;background:#06141e;border:1px solid rgba(255,255,255,.08);text-align:center}.inst small{display:block;color:#8aa1af;font-size:9px;letter-spacing:1px}.inst b{font-size:23px;font-variant-numeric:tabular-nums}.inst em{display:block;color:#61869a;font-size:9px;font-style:normal}.toTarget{font-size:12px;color:#c9d5da;margin-bottom:10px}.demoNote{padding:11px 12px;background:rgba(224,179,92,.09);border:1px solid rgba(224,179,92,.24);color:#e9d9ad;border-radius:13px;font-size:11px}
+#crewMap,#pubMap{height:360px;border-radius:17px;overflow:hidden;background:#d9e0e4}
+#crewMap{margin-top:14px}
+.crewNavShell{background:#04090c;border:1px solid #31434d;border-radius:20px;padding:13px;overflow:hidden;box-shadow:inset 0 0 40px rgba(77,194,255,.03)}
+.crewNavTop{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:10px}
+.crewNavReadout{text-align:center;background:#0b1419;border:1px solid #25343c;border-radius:12px;padding:8px}
+.crewNavReadout small{display:block;color:#a5b4bb;font-size:10px;text-transform:uppercase;letter-spacing:.05em}
+.crewNavReadout b{display:block;font-family:Consolas,monospace;font-size:29px;color:#fff}
+.crewNavMain{display:grid;grid-template-columns:minmax(250px,1fr) minmax(140px,.55fr);gap:12px;align-items:center}
+.crewNavDial{position:relative;width:min(330px,78vw);aspect-ratio:1;margin:auto;border-radius:50%;background:radial-gradient(circle at center,#10212b 0 23%,#071117 24% 58%,#03070a 59%);border:2px solid #40545f;box-shadow:0 0 0 8px #09131a,0 0 0 9px #283943,inset 0 0 28px #000;overflow:hidden}
+.crewNavDial:before{content:"";position:absolute;inset:6%;border-radius:50%;background:repeating-conic-gradient(from -1deg,rgba(255,255,255,.55) 0 1deg,transparent 1deg 10deg);mask:radial-gradient(circle,transparent 0 78%,#000 79%);-webkit-mask:radial-gradient(circle,transparent 0 78%,#000 79%);opacity:.65}
+.crewCompassRing{position:absolute;inset:10%;border:1px solid #647985;border-radius:50%;transition:transform .35s linear}
+.crewCardinal{position:absolute;font:900 15px/1 Consolas,monospace;color:#dbe8ee;text-shadow:0 1px 3px #000}.crewCardinal.n{left:50%;top:-9px;transform:translateX(-50%);color:#ffd541}.crewCardinal.e{right:-7px;top:50%;transform:translateY(-50%)}.crewCardinal.s{left:50%;bottom:-9px;transform:translateX(-50%)}.crewCardinal.w{left:-7px;top:50%;transform:translateY(-50%)}
+.crewDialHeading{position:absolute;left:50%;top:18%;transform:translateX(-50%);font:900 11px/1 Consolas,monospace;color:#9bb2bf;background:#071117;padding:4px 7px;border-radius:999px;border:1px solid #283943}
+.crewTargetPointer{position:absolute;inset:0;transform-origin:50% 50%;transition:transform .35s linear;pointer-events:none}
+.crewTargetPointer:before{content:"";position:absolute;left:50%;top:12%;height:38%;width:3px;transform:translateX(-50%);background:linear-gradient(#ffd541,#e0b35c);box-shadow:0 0 10px rgba(255,213,65,.7)}
+.crewTargetPointer:after{content:"";position:absolute;left:50%;top:9%;transform:translate(-50%,-50%);width:0;height:0;border-left:8px solid transparent;border-right:8px solid transparent;border-bottom:14px solid #ffd541;filter:drop-shadow(0 0 5px rgba(255,213,65,.8))}
+.crewTargetBubble{position:absolute;left:50%;top:3.5%;transform:translate(-50%,-50%);min-width:34px;height:34px;padding:0 8px;border-radius:999px;background:#ffd541;color:#071117;display:grid;place-items:center;font-size:11px;font-weight:1000;border:3px solid #fff;box-shadow:0 4px 14px rgba(0,0,0,.5);white-space:nowrap}
+.crewCogMarker{position:absolute;left:50%;top:3%;transform:translateX(-50%);width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-top:12px solid #4dc2ff;filter:drop-shadow(0 0 5px rgba(77,194,255,.7))}
+.crewBoatUp{position:absolute;left:50%;top:50%;transform:translate(-50%,-56%);font-size:42px;line-height:1;color:#fff;text-shadow:0 0 10px rgba(77,194,255,.7);z-index:4}.crewBoatUp:after{content:"YOU";position:absolute;left:50%;top:37px;transform:translateX(-50%);font:900 8px/1 sans-serif;letter-spacing:1px;color:#74d6ff}
+.crewCenterVmg{position:absolute;left:50%;top:67%;transform:translate(-50%,-50%);text-align:center;z-index:3}.crewCenterVmg b{display:block;font:900 25px/1 Consolas,monospace;color:#fff}.crewCenterVmg small{display:block;margin-top:3px;color:#9eb0b9;font-size:8px;letter-spacing:1px}
+.crewNavSide{display:grid;gap:8px}.crewNavTargetCard,.crewSteerBox{background:#0b1419;border:1px solid #25343c;border-radius:13px;padding:11px;text-align:center}.crewNavTargetCard small,.crewSteerBox small{display:block;color:#9eb0b9;font-size:9px;text-transform:uppercase;letter-spacing:.8px}.crewNavTargetCard b{display:block;font-size:22px;color:#ffd887;margin:4px 0}.crewNavTargetCard span{display:block;color:#b9c8cf;font-size:11px}.crewSteerCommand{margin-top:10px;padding:11px 12px;border-radius:12px;text-align:center;font:1000 18px/1.15 sans-serif;letter-spacing:.8px;background:#102735;border:1px solid #345366;color:#fff}.crewSteerCommand.port{background:#3a1720;border-color:#7b3342;color:#ff9aaa}.crewSteerCommand.starboard{background:#123621;border-color:#2d7047;color:#8ff0ad}.crewSteerCommand.oncourse{background:#2d2a10;border-color:#746a22;color:#ffe56f}
+.crewSteerStrip{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:9px}.crewSteerBox b{display:block;font:900 20px/1.2 Consolas,monospace;margin-top:4px}.crewVmgBar{height:8px;border-radius:999px;background:#15252e;overflow:hidden;margin-top:10px}.crewVmgBar>i{display:block;height:100%;width:0;background:linear-gradient(90deg,#b45b62,#ffd541,#55d882);transition:width .3s ease}
+.crewNavLegend{display:flex;justify-content:center;gap:13px;flex-wrap:wrap;margin-top:10px;color:#91a9b9;font-size:9px}.crewNavLegend span{display:flex;align-items:center;gap:5px}.crewNavLegend i{width:8px;height:8px;border-radius:50%;display:inline-block}
+.crewNavHint{font-size:10px;color:#8197a2;text-align:center;margin-top:8px}
+@media(max-width:700px){.crewNavMain{grid-template-columns:1fr}.crewNavSide{grid-template-columns:1fr 1fr}.crewNavTargetCard{grid-column:1/-1}.crewSteerStrip{grid-template-columns:repeat(3,1fr)}.crewSteerBox b{font-size:17px}}
+@media(max-width:430px){.crewNavTop{grid-template-columns:1fr 1fr}.crewNavReadout b{font-size:24px}.crewNavDial{width:min(300px,82vw)}.crewNavSide{grid-template-columns:1fr}.crewNavTargetCard{grid-column:auto}.crewSteerCommand{font-size:16px}.crewSteerBox{padding:9px 6px}.crewSteerBox b{font-size:15px}}
+.navInstruments{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}.inst{padding:12px;border-radius:14px;background:#06141e;border:1px solid rgba(255,255,255,.08);text-align:center}.inst small{display:block;color:#8aa1af;font-size:9px;letter-spacing:1px}.inst b{font-size:23px;font-variant-numeric:tabular-nums}.inst em{display:block;color:#61869a;font-size:9px;font-style:normal}.toTarget{font-size:12px;color:#c9d5da;margin-bottom:10px}.demoNote{padding:11px 12px;background:rgba(224,179,92,.09);border:1px solid rgba(224,179,92,.24);color:#e9d9ad;border-radius:13px;font-size:11px}
 .checkGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}.checkItem{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px;border-radius:14px;background:rgba(255,255,255,.045);border:1px solid var(--line)}.status{font-size:10px;font-weight:800;color:#93a4ad}.status.ok{color:#8ce5aa}.status.ping{color:#ffd887}
 .roundHero{height:300px;position:relative}.roundHero img{width:100%;height:100%;object-fit:cover}.roundHero:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(4,13,20,.05),rgba(4,13,20,.9))}.roundHero div{position:absolute;z-index:2;left:18px;bottom:16px}.roundHero h2{font-family:Georgia,serif;font-size:34px;margin:0}.drinkChoices{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}.drink{border:1px solid var(--line);background:rgba(255,255,255,.045);color:#fff;border-radius:15px;padding:13px 8px;text-align:left}.drink.active{border-color:#f6d181;background:rgba(224,179,92,.12)}.drink b{display:block}.drink span{font-size:10px;color:var(--muted)}.roundRows{display:grid;gap:7px}.roundRow{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center}.drinkTag{background:#071924;color:#eaf3f7;border:1px solid var(--line);border-radius:999px;padding:8px 11px;font-size:11px;font-weight:800}.otherDrinkBox{display:none;margin-top:10px;padding:12px;border:1px solid rgba(224,179,92,.28);background:rgba(224,179,92,.08);border-radius:14px}.otherDrinkBox.show{display:flex;gap:8px;align-items:center}.otherDrinkBox input{flex:1;min-width:0;background:#071924;color:white;border:1px solid var(--line);border-radius:10px;padding:10px 11px;outline:none}.roundFeedback{min-height:20px;margin-top:8px;color:#ffd887;font-weight:900;font-size:12px}.tally{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.tally span{background:#071924;border:1px solid var(--line);padding:9px 11px;border-radius:999px;font-size:12px}.tally b{color:#ffd887}
 .pubList{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:10px}.pub{padding:12px;border-radius:14px;background:rgba(255,255,255,.045);border:1px solid var(--line);display:flex;gap:10px;align-items:flex-start}.pub.selected{border-color:rgba(224,179,92,.6);background:rgba(224,179,92,.08)}.pub .info{flex:1}.pub b{display:block}.pub small{color:var(--muted)}.voteBtn{background:#19384a;color:#d9e8ef;border:0;border-radius:10px;padding:8px 9px;font-size:11px}.voteBtn.voted{background:var(--gold);color:#13202a}.whereTop{display:flex;justify-content:space-between;gap:12px;align-items:center}.winner{color:#ffd887;font-weight:900}
@@ -85,7 +111,7 @@ button,input,select{font:inherit} button{cursor:pointer}.app{max-width:1180px;ma
       <div class="card hero">
         <img id="heroSlide" src="assets/party-01.webp" alt="Christmas crew" />
         <div id="heroCaption" class="heroCaption">Christmas crew</div>
-        <div class="revStamp">REV 9 · LIVE</div>
+        <div class="revStamp">REV 10 · CREW NAV</div>
         <button id="heroMax" class="heroMax" aria-label="Maximise current picture" title="Maximise picture"><i class="fa-solid fa-expand"></i></button>
         <div class="heroReel" aria-label="Crew image slideshow"><button id="heroPrev" class="heroArrow" aria-label="Previous image"><i class="fa-solid fa-chevron-left"></i></button><div id="heroDots" class="heroDots"></div><button id="heroNext" class="heroArrow" aria-label="Next image"><i class="fa-solid fa-chevron-right"></i></button></div>
         <div class="heroContent">
@@ -168,16 +194,41 @@ button,input,select{font:inherit} button{cursor:pointer}.app{max-width:1180px;ma
         </div>
         <div class="card pad">
           <div class="toTarget">Navigating to: <b id="targetName">No crew logged in</b></div>
-          <div id="crewMap"></div>
-          <div class="navInstruments">
-            <div class="inst"><small>DTW</small><b id="dtw">0.00</b><em>km to crew</em></div>
-            <div class="inst"><small>BTW</small><b id="btw">000°</b><em>bearing</em></div>
-            <div class="inst"><small>COG</small><b id="cog">---</b><em>course over ground</em></div>
-            <div class="inst"><small>SOG</small><b id="sog">0.0</b><em>km/h</em></div>
-            <div class="inst"><small>VMG</small><b id="vmg">0.0</b><em>toward target</em></div>
-            <div class="inst"><small>XTE</small><b id="xte">PUB</b><em>cross-track excuse</em></div>
+          <div class="crewNavShell" id="crewNavShell">
+            <div class="crewNavTop">
+              <div class="crewNavReadout"><small>Track / COG</small><b id="cog">---</b></div>
+              <div class="crewNavReadout"><small>Bearing to crew / BTW</small><b id="btw">---</b></div>
+            </div>
+            <div class="crewNavMain">
+              <div class="crewNavDial" id="crewNavDial">
+                <div class="crewCompassRing" id="crewCompassRing">
+                  <span class="crewCardinal n">N</span><span class="crewCardinal e">E</span><span class="crewCardinal s">S</span><span class="crewCardinal w">W</span>
+                </div>
+                <div class="crewDialHeading" id="crewDialHeading">COG ---</div>
+                <div class="crewTargetPointer" id="crewTargetPointer"><span class="crewTargetBubble" id="crewTargetBubble">MARK</span></div>
+                <div class="crewCogMarker" title="Boat-up / current COG"></div>
+                <div class="crewBoatUp">▲</div>
+                <div class="crewCenterVmg"><b id="crewVmgMain">—</b><small>VMG TO CREW</small></div>
+              </div>
+              <div class="crewNavSide">
+                <div class="crewNavTargetCard"><small>CURRENT MARK</small><b id="crewTargetCardName">Select crew</b><span id="crewTargetCardMeta">Waiting for a live GPS target</span></div>
+                <div class="crewSteerBox"><small>Relative bearing</small><b id="crewRelativeBearing">—</b></div>
+                <div class="crewSteerBox"><small>VMG efficiency</small><b id="crewVmgPct">—</b></div>
+              </div>
+            </div>
+            <div class="crewSteerCommand" id="crewSteerCommand">SELECT CREW TO NAVIGATE</div>
+            <div class="crewSteerStrip">
+              <div class="crewSteerBox"><small>Turn</small><b id="crewTurnCue">—</b></div>
+              <div class="crewSteerBox"><small>Distance</small><b id="dtw">—</b></div>
+              <div class="crewSteerBox"><small>SOG</small><b id="sog">—</b></div>
+            </div>
+            <div class="crewVmgBar"><i id="crewVmgBar"></i></div>
+            <div class="crewNavLegend"><span><i style="background:#ffd541"></i>Crew bearing</span><span><i style="background:#4dc2ff"></i>Your COG</span><span>Boat stays pointing up</span></div>
+            <div class="crewNavHint">Treat the selected crew member like a moving mark. Walk the boat icon toward the gold pointer.</div>
+            <span id="vmg" class="hidden">0.0</span><span id="xte" class="hidden">PUB</span>
           </div>
-          <div class="actions"><button class="btn primary" id="walkToCrew"><i class="fa-solid fa-person-walking-arrow-right"></i> Open walking route</button></div>
+          <div id="crewMap"></div>
+          <div class="actions"><button class="btn ghost" id="centerCrewNav"><i class="fa-solid fa-crosshairs"></i> Recenter crew nav</button></div>
         </div>
       </div>
       <div class="grid" style="margin-top:14px">
@@ -329,7 +380,7 @@ button,input,select{font:inherit} button{cursor:pointer}.app{max-width:1180px;ma
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
 <script>
 // ================================================================
-// PROSPECT REV 9 PUBLIC BROWSER CONFIG
+// PROSPECT REV 10 PUBLIC BROWSER CONFIG
 // These are browser-safe/public keys. Do not put service-role keys here.
 const PROSPECT_CONFIG = {
   CARTO_API_KEY: "cb1_5ayt_1_5ec3a8cd97bd4b55dc50f636",
@@ -491,7 +542,7 @@ crew=[];activeId='';renderAll();renderPubs();initCrewMap();initPubMap();
 </script>
 
 <script>
-// ====================== REV 9 LIVE CREW LAYER ======================
+// ====================== REV 10 LIVE CREW + SAILSTEER NAV ======================
 let sbClient=null, sbUser=null, liveSubscription=null, liveTargetLine=null;
 let myPubVote='', lastGpsPush=0, liveBooted=false;
 const LIVE_FALLBACK={lat:52.0588,lng:-9.5092};
@@ -593,7 +644,7 @@ renderCrew=function(){
   if(selectedCrew>=crew.length)selectedCrew=0;
   list.innerHTML=crew.map((c,i)=>{let meta;if(c.demo)meta='Demo position';else if(c.id===activeId)meta=c.sharing?'You · sharing live GPS':'You · GPS off';else if(c.check)meta=(c.sharing?'Sharing GPS':'Checked in · GPS off')+' · '+liveAgo(c.lastSeen);else meta='Checked out · '+liveAgo(c.lastSeen);
     return `<div class="crew ${i===selectedCrew?'selected':''}" data-i="${i}"><div class="avatar">${(c.name[0]||'?').toUpperCase()}</div><div class="crewMeta"><b>${c.name}${c.id===activeId?'<span class="youTag">You</span>':''}</b><span>${meta}</span></div><div class="dot ${c.check?'':'away'}"></div></div>`}).join('');
-  list.querySelectorAll('.crew').forEach(el=>el.onclick=()=>{selectedCrew=+el.dataset.i;renderCrew();updateTarget()});renderChecks();renderRoundRows();updateHomeStats();syncCrewMarkers();
+  list.querySelectorAll('.crew').forEach(el=>el.onclick=()=>{selectedCrew=+el.dataset.i;renderCrew();updateTarget();setTimeout(()=>document.getElementById('crewNavShell')?.scrollIntoView({behavior:'smooth',block:'center'}),40)});renderChecks();renderRoundRows();updateHomeStats();syncCrewMarkers();
 };
 renderChecks=function(){const g=$('#checkGrid');if(!crew.length){g.innerHTML='<div class="crewEmpty">Check-ins appear as people join.</div>';return}g.innerHTML=crew.map((c,i)=>`<div class="checkItem"><div><b>${c.name}${c.id===activeId?'<span class="youTag">You</span>':''}</b><div class="status ${c.check?'ok':''}">${c.check?'CHECKED IN':'WAITING'}</div></div>${c.id===activeId?`<button class="voteBtn" onclick="toggleCheck(${i})">${c.check?'Check out':'Check in'}</button>`:`<span class="status">${c.demo?'demo':'live'}</span>`}</div>`).join('')};
 
@@ -601,25 +652,52 @@ syncCrewMarkers=function(){
   if(!crewMap)return;crewMarkers.forEach(m=>{if(m)crewMap.removeLayer(m)});crewMarkers=crew.map((c,i)=>{
     if(c.id===activeId||c.lat==null||c.lng==null||!Number.isFinite(c.lat)||!Number.isFinite(c.lng))return null;
     const marker=L.marker([c.lat,c.lng]).addTo(crewMap).bindPopup(`<b>${c.name}</b><br>${c.check?'Checked in':'Checked out'}${c.sharing?' · live GPS':''}<br><b>Tap marker to navigate</b>`);
-    marker.on('click',()=>{selectedCrew=i;renderCrew();updateTarget()});return marker});updateTarget();
+    marker.on('click',()=>{selectedCrew=i;renderCrew();updateTarget();setTimeout(()=>document.getElementById('crewNavShell')?.scrollIntoView({behavior:'smooth',block:'center'}),40)});return marker});updateTarget();
 };
 updateTarget=function(){
   if(liveTargetLine&&crewMap){try{crewMap.removeLayer(liveTargetLine)}catch(e){}liveTargetLine=null}
-  if(!crew.length){$('#targetName').textContent='No crew logged in';['dtw','btw','sog','vmg'].forEach(id=>$('#'+id).textContent='—');$('#cog').textContent='---';return}
+  const setText=(id,val)=>{const el=$('#'+id);if(el)el.textContent=val};
+  const setNavNeutral=(msg='SELECT CREW TO NAVIGATE')=>{
+    setText('crewTargetCardName','Select crew');setText('crewTargetCardMeta','Waiting for a live GPS target');setText('crewRelativeBearing','—');setText('crewVmgPct','—');setText('crewVmgMain','—');setText('crewTurnCue','—');
+    const cmd=$('#crewSteerCommand');if(cmd){cmd.textContent=msg;cmd.className='crewSteerCommand'}
+    const ptr=$('#crewTargetPointer');if(ptr)ptr.style.transform='rotate(0deg)';const ring=$('#crewCompassRing');if(ring)ring.style.transform='rotate(0deg)';const bar=$('#crewVmgBar');if(bar)bar.style.width='0%';
+  };
+  if(!crew.length){setText('targetName','No crew logged in');setText('dtw','—');setText('btw','---');setText('cog','---');setText('sog','—');setText('vmg','—');setNavNeutral();return}
   let t=crew[selectedCrew];if(!t||t.id===activeId){const alt=crew.findIndex(c=>c.id!==activeId&&c.lat!=null&&c.lng!=null);if(alt>=0){selectedCrew=alt;t=crew[alt]}}
-  if(!t||t.id===activeId){$('#targetName').textContent='Select another crew member';$('#dtw').textContent='—';$('#btw').textContent='---';$('#cog').textContent=currentHeading==null?'---':String(Math.round(currentHeading)).padStart(3,'0')+'°';$('#sog').textContent=currentSpeed.toFixed(1);$('#vmg').textContent='—';return}
-  $('#targetName').textContent=t.name;
-  if(!lastPos){$('#dtw').textContent='START GPS';$('#btw').textContent='---';$('#cog').textContent='---';$('#sog').textContent='—';$('#vmg').textContent='—';return}
-  if(t.lat==null||t.lng==null){$('#dtw').textContent='NO GPS';$('#btw').textContent='---';$('#vmg').textContent='—';return}
-  const d=hav(userPos,t),br=bearing(userPos,t);$('#dtw').textContent=d<1?Math.round(d*1000)+'m':d.toFixed(2)+'km';$('#btw').textContent=String(Math.round(br)).padStart(3,'0')+'°';$('#cog').textContent=currentHeading==null?'---':String(Math.round(currentHeading)).padStart(3,'0')+'°';$('#sog').textContent=currentSpeed.toFixed(1);const v=currentHeading==null?0:Math.max(-currentSpeed,currentSpeed*Math.cos(deg2rad(angleDiff(br,currentHeading))));$('#vmg').textContent=v.toFixed(1);
-  if(crewMap){crewMarkers.forEach((m,i)=>{if(m)m.setOpacity(i===selectedCrew?1:.55)});liveTargetLine=L.polyline([[userPos.lat,userPos.lng],[t.lat,t.lng]],{color:'#e0b35c',weight:4,opacity:.85,dashArray:'9,7'}).addTo(crewMap);crewMap.fitBounds(liveTargetLine.getBounds().pad(.22),{animate:true,maxZoom:17})}
+  if(!t||t.id===activeId){setText('targetName','Select another crew member');setText('dtw','—');setText('btw','---');setText('cog',currentHeading==null?'---':String(Math.round(currentHeading)).padStart(3,'0')+'°');setText('sog',currentSpeed?`${(currentSpeed/1.852).toFixed(1)} kn`:'—');setText('vmg','—');setNavNeutral('SELECT ANOTHER CREW MEMBER');return}
+  setText('targetName',t.name);setText('crewTargetCardName',t.name);setText('crewTargetBubble',(t.name||'MARK').split(/\s+/)[0].slice(0,7).toUpperCase());
+  if(!lastPos){setText('dtw','START GPS');setText('btw','---');setText('cog','---');setText('sog','—');setText('vmg','—');setText('crewTargetCardMeta','Start Share my GPS to navigate');setNavNeutral('START GPS TO NAVIGATE');return}
+  if(t.lat==null||t.lng==null){setText('dtw','NO GPS');setText('btw','---');setText('vmg','—');setText('crewTargetCardMeta',`${t.name} is not sharing GPS`);setNavNeutral('TARGET GPS OFF');return}
+  const d=hav(userPos,t),br=bearing(userPos,t),sogKn=currentSpeed/1.852;
+  const cogVal=currentHeading==null?null:(currentHeading+360)%360;
+  const rel=cogVal==null?null:angleDiff(br,cogVal);
+  const vmgKn=cogVal==null?0:sogKn*Math.cos(deg2rad(rel));
+  const vmgPct=sogKn>.15?Math.max(-100,Math.min(100,(vmgKn/sogKn)*100)):0;
+  const distLabel=d<1?Math.round(d*1000)+' m':d.toFixed(2)+' km';
+  const nm=(d/1.852).toFixed(2);
+  setText('dtw',distLabel);setText('btw',String(Math.round(br)).padStart(3,'0')+'°');setText('cog',cogVal==null?'---':String(Math.round(cogVal)).padStart(3,'0')+'°');setText('sog',`${sogKn.toFixed(1)} kn`);setText('vmg',vmgKn.toFixed(1));setText('crewVmgMain',`${vmgKn.toFixed(1)} kn`);setText('crewVmgPct',sogKn>.15?`${Math.round(vmgPct)}%`:'—');setText('crewTargetCardMeta',`${distLabel} · ${nm} nm · BRG ${String(Math.round(br)).padStart(3,'0')}°`);
+  if(cogVal!=null){
+    const ring=$('#crewCompassRing');if(ring)ring.style.transform=`rotate(${-cogVal}deg)`;
+    const ptr=$('#crewTargetPointer');if(ptr)ptr.style.transform=`rotate(${rel}deg)`;
+    setText('crewDialHeading',`COG ${String(Math.round(cogVal)).padStart(3,'0')}°`);
+    const abs=Math.abs(rel);let cue,cls='crewSteerCommand';
+    if(abs<=8){cue='ON COURSE';cls+=' oncourse';setText('crewTurnCue','HOLD')}
+    else if(rel<0){cue=`TURN PORT ${Math.round(abs)}°`;cls+=' port';setText('crewTurnCue',`PORT ${Math.round(abs)}°`)}
+    else{cue=`TURN STARBOARD ${Math.round(abs)}°`;cls+=' starboard';setText('crewTurnCue',`STBD ${Math.round(abs)}°`)}
+    setText('crewRelativeBearing',rel==null?'—':`${rel>0?'+':''}${Math.round(rel)}°`);const cmd=$('#crewSteerCommand');if(cmd){cmd.textContent=cue;cmd.className=cls}
+    const bar=$('#crewVmgBar');if(bar)bar.style.width=`${Math.max(0,Math.min(100,vmgPct))}%`;
+  }else{
+    setText('crewDialHeading','COG ---');setText('crewRelativeBearing','MOVE TO GET COG');setText('crewTurnCue','MOVE');const cmd=$('#crewSteerCommand');if(cmd){cmd.textContent='MOVE A FEW METRES TO ESTABLISH COG';cmd.className='crewSteerCommand'}
+  }
+  if(crewMap){crewMarkers.forEach((m,i)=>{if(m)m.setOpacity(i===selectedCrew?1:.55)});liveTargetLine=L.polyline([[userPos.lat,userPos.lng],[t.lat,t.lng]],{color:'#e0b35c',weight:4,opacity:.9,dashArray:'9,7'}).addTo(crewMap);crewMap.fitBounds(liveTargetLine.getBounds().pad(.28),{animate:true,maxZoom:18})}
 };
-$('#walkToCrew').onclick=()=>{const t=crew[selectedCrew];if(!lastPos){toast('Start Share my GPS first');return}if(!t||t.id===activeId||t.lat==null||t.lng==null){toast('Select a crew member with a GPS position first');return}window.open(`https://www.google.com/maps/dir/?api=1&origin=${userPos.lat},${userPos.lng}&destination=${t.lat},${t.lng}&travelmode=walking`,'_blank')};
+
+$('#centerCrewNav').onclick=()=>{const t=crew[selectedCrew];if(!crewMap||!lastPos){toast('Start Share my GPS first');return}if(!t||t.id===activeId||t.lat==null||t.lng==null){crewMap.setView([userPos.lat,userPos.lng],17);return}const b=L.latLngBounds([[userPos.lat,userPos.lng],[t.lat,t.lng]]);crewMap.fitBounds(b.pad(.3),{animate:true,maxZoom:18})};
 
 async function pushGps(n){if(!sbUser)return;const now=new Date().toISOString();await sbClient.from('crew_presence').update({latitude:n.lat,longitude:n.lng,heading:currentHeading,speed:currentSpeed,sharing_gps:true,checked_in:true,last_seen:now,updated_at:now}).eq('user_id',sbUser.id)}
 async function stopLiveGps(){if(gpsWatch!=null){try{navigator.geolocation.clearWatch(gpsWatch)}catch(e){}gpsWatch=null}if(sbUser)await sbClient.from('crew_presence').update({sharing_gps:false,last_seen:new Date().toISOString(),updated_at:new Date().toISOString()}).eq('user_id',sbUser.id);$('#gpsBtn').innerHTML='<i class="fa-solid fa-location-crosshairs"></i> Share my GPS';toast('GPS sharing stopped')}
 shareGPS=async function(){const a=activeUser();if(!a){toast('Join the crew first');return}if(gpsWatch!=null){await stopLiveGps();return}if(!navigator.geolocation){toast('Geolocation not supported');return}
-  $('#gpsBtn').innerHTML='<i class="fa-solid fa-spinner fa-spin"></i> Acquiring GPS';gpsWatch=navigator.geolocation.watchPosition(async pos=>{const n={lat:pos.coords.latitude,lng:pos.coords.longitude};currentSpeed=pos.coords.speed!=null?Math.max(0,pos.coords.speed*3.6):currentSpeed;currentHeading=pos.coords.heading!=null?pos.coords.heading:currentHeading;userPos=n;lastPos=n;if(userMarker){userMarker.setLatLng([n.lat,n.lng]);userMarker.setStyle({opacity:1,fillOpacity:1});userMarker.bindPopup('You · live GPS')}updateTarget();$('#gpsBtn').innerHTML='<i class="fa-solid fa-location-dot"></i> Stop live GPS';const now=Date.now();if(now-lastGpsPush>3000){lastGpsPush=now;await pushGps(n)}},err=>{toast(err.code===1?'Location permission blocked. Allow Location for this site/app.':'GPS unavailable: '+err.message);$('#gpsBtn').innerHTML='<i class="fa-solid fa-location-crosshairs"></i> Share my GPS';gpsWatch=null},{enableHighAccuracy:true,maximumAge:1500,timeout:12000})
+  $('#gpsBtn').innerHTML='<i class="fa-solid fa-spinner fa-spin"></i> Acquiring GPS';gpsWatch=navigator.geolocation.watchPosition(async pos=>{const n={lat:pos.coords.latitude,lng:pos.coords.longitude};const prev=lastPos?{lat:lastPos.lat,lng:lastPos.lng}:null;currentSpeed=pos.coords.speed!=null?Math.max(0,pos.coords.speed*3.6):currentSpeed;if(pos.coords.heading!=null&&Number.isFinite(pos.coords.heading)){currentHeading=pos.coords.heading}else if(prev){const moved=hav(prev,n)*1000;if(moved>=2.5)currentHeading=bearing(prev,n)}userPos=n;lastPos=n;if(!crewTrailPoints.length||hav(crewTrailPoints[crewTrailPoints.length-1],n)*1000>=2){crewTrailPoints.push([n.lat,n.lng]);if(crewTrailPoints.length>120)crewTrailPoints.shift();if(crewMap){if(crewTrailLine)crewTrailLine.setLatLngs(crewTrailPoints);else crewTrailLine=L.polyline(crewTrailPoints,{color:'#4dc2ff',weight:3,opacity:.72}).addTo(crewMap)}}if(userMarker){userMarker.setLatLng([n.lat,n.lng]);userMarker.setStyle({opacity:1,fillOpacity:1});userMarker.bindPopup('You · live GPS')}updateTarget();$('#gpsBtn').innerHTML='<i class="fa-solid fa-location-dot"></i> Stop live GPS';const now=Date.now();if(now-lastGpsPush>3000){lastGpsPush=now;await pushGps(n)}},err=>{toast(err.code===1?'Location permission blocked. Allow Location for this site/app.':'GPS unavailable: '+err.message);$('#gpsBtn').innerHTML='<i class="fa-solid fa-location-crosshairs"></i> Share my GPS';gpsWatch=null},{enableHighAccuracy:true,maximumAge:1500,timeout:12000})
 };
 $('#gpsBtn').onclick=shareGPS;
 
@@ -643,7 +721,7 @@ async function bootLiveCrew(){
   }catch(e){console.error('Live crew boot failed',e);setLiveBadge('SETUP NEEDED',false);const n=$('#liveCrewNote');if(n)n.innerHTML='<b>Supabase setup needed:</b> run the supplied <code>supabase_setup.sql</code> once, then reload this page.';toast('Live crew setup needed — run supabase_setup.sql')}
 }
 bootLiveCrew();
-// ==================== END REV 9 LIVE CREW LAYER ====================
+// ==================== END REV 10 LIVE CREW + SAILSTEER NAV ====================
 </script>
 
 </body></html>
